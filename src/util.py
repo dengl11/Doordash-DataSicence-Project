@@ -1,6 +1,8 @@
 import json
 from datetime import datetime, timedelta
 from calendar import timegm
+import pandas as pd
+import numpy as np
 
 
 def load_prediction_todo(k = -1):
@@ -51,3 +53,21 @@ def add_timestamp_by_seconds(t0, seconds_elapsed):
     """
     t = parse_utc_timestamp(t0) + timedelta(seconds = seconds_elapsed)
     return t.strftime("%Y-%m-%d %H:%M:%S")
+
+def load_prediction_todo_as_df():
+    rows = load_prediction_todo(-1)
+    df = pd.DataFrame(rows)
+    for f in ["total_items",
+            'total_outstanding_orders',
+            'estimated_order_place_duration',
+            'max_item_price',
+            'num_distinct_items',
+            'min_item_price',
+            'estimated_store_to_consumer_driving_duration',
+            'subtotal',
+            'total_busy_dashers',
+            'total_onshift_dashers'
+            ]:
+        df[f][df[f] == "NA"] = np.nan
+        df[f] = df[f].astype(float)
+    return df
