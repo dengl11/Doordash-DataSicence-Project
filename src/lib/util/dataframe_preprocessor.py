@@ -283,7 +283,7 @@ class DataframePreprocessor:
         self.dataframe_encoded = True
         for col in self._dataframe.keys():
             if self._dataframe[col].dtype == "object":
-                self.force_feature_dtype(col, str)
+                self.force_column_dtype(col, str)
                 if verbose: print("Encoding: {}".format(col))
                 encoder = self.encode_column(col)
 
