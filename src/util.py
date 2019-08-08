@@ -19,7 +19,7 @@ def load_prediction_todo(k = -1):
             k -= 1
         return ans
 
-def parse_utc_timestamp(timestamp):
+def parse_utc_timestamp(timestamp : str):
     """
     Args:
         timestamp: string format of utc time
@@ -30,7 +30,7 @@ def parse_utc_timestamp(timestamp):
     utc_time = datetime.strptime(timestamp, "%Y-%m-%d %H:%M:%S")
     return utc_time
 
-def diff_timestamps(t1, t2):
+def diff_timestamps(t1 : str, t2 : str):
     """
     Args:
         t1: 
